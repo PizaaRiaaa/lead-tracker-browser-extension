@@ -1,4 +1,4 @@
-let myLeads = ["www.facebook.com"];
+let myLeads = [];
 
 let saveInputBtn = document.querySelector(".input-btn");
 let btnDelete = document.querySelector(".delete-btn");
@@ -9,27 +9,28 @@ let ulEl = document.querySelector(".ul-el");
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 if(leadsFromLocalStorage) {
   myLeads = leadsFromLocalStorage
-  renderLeads()
+  render(myLeads)
+}
+
+function render(leadsArr) {
+  let listItems = "";
+  for(let i = 0; i < leadsArr.length; i++) {
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    listItems += `
+      <li><a target='_blank' href=${leadsArr[i]}>  ${leadsArr[i]} </a></li>`; 
+  }
+  ulEl.innerHTML =  listItems;
 }
 
 saveInputBtn.addEventListener("click", function() {
   myLeads.push(inputEl.value)
   inputEl.value = "";
-  renderLeads();
+  render(myLeads);
 })
 
 btnDelete.addEventListener("click", function() {
   localStorage.clear();
   myLeads = [];
-  renderLeads()
+  render(myLeads)
 })
 
-function renderLeads() {
-  let listItems = "";
-  for(let i = 0; i < myLeads.length; i++) {
-  localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    listItems += `
-      <li><a target='_blank' href=${myLeads[i]}>  ${myLeads[i]} </a></li>`; 
-  }
-  ulEl.innerHTML =  listItems;
-}
