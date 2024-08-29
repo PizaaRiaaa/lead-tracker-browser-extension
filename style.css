@@ -21,7 +21,7 @@ body {
   font-weight: bolder;
 }
 
-.container .input-btn{
+.container .input-btn, .save-tab-btn{
   background-color: green;
   color: white;
 }
@@ -34,7 +34,7 @@ body {
 .btn-container {
   display: flex;
   flex-direction: row;
-  gap:20px;
+  gap:5px;
 }
 
 ul li a {

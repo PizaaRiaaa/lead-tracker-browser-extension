@@ -1,6 +1,7 @@
 let myLeads = [];
 
 let saveInputBtn = document.querySelector(".input-btn");
+let saveTabBtn = document.querySelector(".save-tab-btn")
 let btnDelete = document.querySelector(".delete-btn");
 let inputEl = document.querySelector(".input-el")
 let boxDiv = document.querySelector(".box");
@@ -26,6 +27,12 @@ saveInputBtn.addEventListener("click", function() {
   myLeads.push(inputEl.value)
   inputEl.value = "";
   render(myLeads);
+})
+
+saveTabBtn.addEventListener("click", function() {
+  myLeads.push(window.location.href)
+  localStorage.setItem("myLeads", JSON.stringify(myLeads))
+  render(myLeads)
 })
 
 btnDelete.addEventListener("click", function() {
